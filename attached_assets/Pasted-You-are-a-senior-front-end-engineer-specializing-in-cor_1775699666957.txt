@@ -1,0 +1,41 @@
+You are a senior front-end engineer specializing in corporate web development. Build a complete, single-page portfolio website delivered as ready-to-deploy source files: `index.html`, `styles.css`, and a `README.md`.
+
+**Site Structure & Sections**
+
+Build these four sections with smooth in-page anchor navigation:
+
+1. **Header/Hero** – Name, short intro tagline, and polished hero message
+2. **About** – Brief background paragraph and skill highlights
+3. **Projects** – Image thumbnails or placeholder images with external links that open in `target="_blank"`
+4. **Contact** – Email address and social media icons
+
+**Design & Aesthetic**
+
+- Corporate and professional: clean typography, generous white space, restrained but modern colour palette
+- Use web-safe or Google Fonts for typography—keep font requests minimal for load performance
+- Subtle, elegant entrance animations on section reveal (gentle fades or upward slides using CSS transitions/animations—no JavaScript animation libraries)
+- Smooth scroll behavior via CSS (`scroll-behavior: smooth`)
+
+**Layout & Responsiveness**
+
+- Use Flexbox and/or CSS Grid for layout
+- Mobile-first media queries ensuring the experience on small screens is as polished as desktop
+- Minimise layout shifts; use explicit dimensions on image containers
+
+**Code Quality Requirements**
+
+- Semantic HTML5 elements (`<header>`, `<main>`, `<section>`, `<footer>`, `<nav>`, etc.)
+- BEM or clearly descriptive class naming convention
+- CSS organized with logical grouping and comments marking each section
+- No external JavaScript dependencies—vanilla JS only if needed for scroll-reveal detection
+- Placeholder content is acceptable; mark every placeholder with a `<!-- TODO -->` comment so customisation points are obvious
+
+**Deliverables**
+
+Output the three files in full, in this order:
+
+1. `index.html` — complete, valid HTML5
+2. `styles.css` — complete stylesheet, minification-ready with inline comments
+3. `README.md` — describes the file structure, how to customise content (colours, fonts, placeholder swaps), and any build/deployment steps
+
+Do not truncate any file. Each file must be complete and functional as delivered.
