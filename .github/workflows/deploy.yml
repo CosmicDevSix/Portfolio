@@ -1,0 +1,85 @@
+# ──────────────────────────────────────────────────────────────
+# Deploy Portfolio to GitHub Pages
+#
+# Triggers on every push to main and can also be run manually.
+# Auto-detects the correct base path:
+#   - username.github.io repos  →  /
+#   - all other repos           →  /repo-name/
+# ──────────────────────────────────────────────────────────────
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # ── BUILD ──────────────────────────────────────────────────
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Resolve base path
+        id: base
+        run: |
+          REPO="${{ github.event.repository.name }}"
+          OWNER="${{ github.repository_owner }}"
+          # User / org pages repo  →  base is /
+          # All other repos        →  base is /repo-name/
+          if [ "$REPO" = "$OWNER.github.io" ]; then
+            echo "path=/" >> "$GITHUB_OUTPUT"
+          else
+            echo "path=/$REPO/" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build portfolio
+        env:
+          NODE_ENV: production
+          PORT: "5173"
+          BASE_PATH: ${{ steps.base.outputs.path }}
+        run: pnpm --filter @workspace/portfolio run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: artifacts/portfolio/dist/public
+
+  # ── DEPLOY ─────────────────────────────────────────────────
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
