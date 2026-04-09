@@ -1,5 +1,6 @@
 import React from "react";
 import { useScrollReveal } from "@/lib/use-scroll-reveal";
+import { getPublicImageUrl } from "@/lib/supabase";
 import { ArrowRight, Mail, MapPin, ExternalLink } from "lucide-react";
 import { SiGithub, SiX } from "react-icons/si";
 import { FaLinkedinIn } from "react-icons/fa6";
@@ -177,7 +178,7 @@ export default function Home() {
               <div className="lg:col-span-7 overflow-hidden reveal">
                 <a href="https://example.com" target="_blank" rel="noreferrer" className="block relative aspect-[16/10] overflow-hidden bg-muted">
                   <img
-                    src="/project-1.png"
+                    src={getPublicImageUrl("project-1.png")}
                     alt="Aura Financial Dashboard"
                     className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-[1.03]"
                   />
@@ -213,7 +214,7 @@ export default function Home() {
               <div className="lg:col-span-7 lg:order-2 overflow-hidden reveal">
                 <a href="https://example.com" target="_blank" rel="noreferrer" className="block relative aspect-[16/10] overflow-hidden bg-muted">
                   <img
-                    src="/project-2.png"
+                    src={getPublicImageUrl("project-2.png")}
                     alt="Maison Object E-Commerce"
                     className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-[1.03]"
                   />
@@ -249,7 +250,7 @@ export default function Home() {
               <div className="lg:col-span-7 overflow-hidden reveal">
                 <a href="https://example.com" target="_blank" rel="noreferrer" className="block relative aspect-[16/10] overflow-hidden bg-muted">
                   <img
-                    src="/project-3.png"
+                    src={getPublicImageUrl("project-3.png")}
                     alt="Vela Studio Brand"
                     className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-[1.03]"
                   />
