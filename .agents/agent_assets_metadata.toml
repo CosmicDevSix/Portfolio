@@ -1,0 +1,20 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "av79JRkYT4WjgLpPAA2Hr"
+uri = "file://artifacts/portfolio/public/project-1.png"
+type = "image"
+title = "Fintech dashboard mockup"
+
+[[generated]]
+id = "w5Eg3y742HScU5wxmfg39"
+uri = "file://artifacts/portfolio/public/project-2.png"
+type = "image"
+title = "Editorial e-commerce mockup"
+
+[[generated]]
+id = "GTVrDsZPg54-k08K1COzu"
+uri = "file://artifacts/portfolio/public/project-3.png"
+type = "image"
+title = "Brand identity presentation"
