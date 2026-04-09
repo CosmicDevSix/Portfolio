@@ -28,15 +28,10 @@ async function main() {
   });
 
   if (bucketError) {
-    if (bucketError.message?.includes("already exists")) {
-      console.log(`Bucket "${BUCKET}" already exists, continuing...`);
+    if (bucketError.message?.includes("already exists") || bucketError.message?.includes("row-level security")) {
+      console.log(`Bucket "${BUCKET}" already exists, continuing with uploads...`);
     } else {
       console.error("Failed to create bucket:", bucketError.message);
-      console.log("You may need to create the bucket manually in the Supabase dashboard:");
-      console.log(`  1. Go to ${supabaseUrl} → Storage`);
-      console.log(`  2. Create a new bucket called "${BUCKET}"`);
-      console.log("  3. Set it to Public");
-      console.log("  4. Re-run this script");
       process.exit(1);
     }
   } else {
